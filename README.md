@@ -50,7 +50,7 @@ This is particulary useful for resource creation, assing values, or enabling or 
 In the next code show a terraform contional code, in this code the ``count`` evaluates the condition. If create_instances is true, the ``resource`` is created, otherwise, it is skipped.
 
 ```sh
-variable "Create_instance" {
+variable "create_instance" {
         default = true
 }
 
