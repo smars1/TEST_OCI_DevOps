@@ -41,3 +41,24 @@ Pass values dynamically during the Terraform run using the -var flag.
 terraform apply - 
 var="vcn_cidr"=192.168.0.0/16"
 ```
+
+# Conditional in Terraform
+Conditionals in Terraform allow you make decisions dynamically within your configuration
+This is particulary useful for resource creation, assing values, or enabling or disabling feature
+
+### Conditional resource creation example:
+In the next code show a terraform contional code, in this code the ``count`` evaluates the condition. If create_instances is true, the ``resource`` is created, otherwise, it is skipped.
+
+```sh
+variable "Create_instance" {
+        default = true
+}
+
+resource "oci_core_instance" "example" {
+    count = var.create_instance ? 1 : 0
+    display_name = "ExampleInstance"
+    compartment_id = var.compartment_id
+}
+
+```
+Note: Conditionals in terraform allow to make your configuration dynamic and efficient.
