@@ -86,3 +86,32 @@ To create a instances resource you need to has created others resource before, a
 
 
 ## Terraform DataSource
+
+Terraform DataSource enable you to query and retrieve existing resources or information about your infrastructure.
+Think of ``Datasource`` like  the equivalent of running a ``select`` query in a Database, while the resource are similar to performing DML operations like a INSERT, UPDATE, OR DELETE.
+
+### EXAMPLE Data Source Declaretion
+Declares a ``data source`` to fetch existing availability domain details in OCI
+
+```sh
+data "oci_identity_availability_domain" "AD1" {
+    compartment_id = var.compartment_id
+    name = "AD-1"
+}
+```
+
+### EXAMPLE: Using Data Source
+Uses the ``Data Source`` resuslt dynamically in a resource to retrive the availability domain nane
+
+```sh
+resource "oci_core_subnet" "example" {
+    cidr_block = "10.0.0.0/24"
+    availability_domain = data.oci_identity_availability_domain.AD1.name
+}
+```
+
+### Conparison to resources
+In Terrafom the ``resource`` are to create or modify infrastruture and the ``Data Source``  are to running query and use the existing infrastructure data.
+
+Higlights the distinction between resources and data sources. 
+``Data source`` are ``read-only``
