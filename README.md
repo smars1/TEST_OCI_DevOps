@@ -148,8 +148,20 @@ resource "oci_core_subnet" "example" {
 }
 ```
 
-### Conparison to resources
+### Comparison to resources
 In Terrafom the ``resource`` are to create or modify infrastruture and the ``Data Source``  are to running query and use the existing infrastructure data.
 
 Highlights the distinction between resources and data sources. 
 ``Data source`` are ``read-only``
+
+
+# Terraform OutPuts
+Terraform outputs allow to retrieve and export crucial information about your infrastructure for use in automation, others modules or external tools.
+
+![alt text](image-2.png)
+
+# Terraform Provisioners
+
+Provisioners in terraform allow you to execute scritps or commands on local or remote machine during the creation or destruction of the resource.
+
+![alt text](image-1.png)
