@@ -113,5 +113,5 @@ resource "oci_core_subnet" "example" {
 ### Conparison to resources
 In Terrafom the ``resource`` are to create or modify infrastruture and the ``Data Source``  are to running query and use the existing infrastructure data.
 
-Higlights the distinction between resources and data sources. 
+Highlights the distinction between resources and data sources. 
 ``Data source`` are ``read-only``
