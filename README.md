@@ -63,7 +63,45 @@ resource "oci_core_instance" "example" {
 ```
 Note: Conditionals in terraform allow to make your configuration dynamic and efficient.
 
-## Terraform Resource
+# Terraform loops
+Loops in terraform enable the effcient creation of resource or dynamic generation of values:
+
+There are two kinds of for: 
+- ``count``: When you need it a sequential values/
+- ``for_each``: Whe you need it to use a maps o sets to value generation. 
+
+### Example using ``count``
+The next example code, show how to create 3 indentical instances, with unique names like: 
+- webserver-0
+- webserver-1
+- webserver-2
+```sh
+resource "oci_core_isntance" "webserver" {
+    count = 3
+    display_name = "webserver-${count.index}"
+    compartment_id = var.compartment_id
+}
+```
+
+### Example using ``for_each``
+The next example code show loops through the instances map, creating instances for web1 and web2 with a specific availability doomains.
+```sh
+variable "instaces" {
+    default = {"web1" = "AD-1" "web2" = "AD-2"} 
+}
+
+resource "oci_core_instance" "example" {
+    for_each = var.instances
+    display_name = each.key
+    availability_domain = each.value
+    compartiment_id = var.compartment_id
+}
+```
+
+
+
+
+# Terraform Resource
 
 The most important thing than you can configure with terraform are the ``resources``
 
