@@ -62,3 +62,27 @@ resource "oci_core_instance" "example" {
 
 ```
 Note: Conditionals in terraform allow to make your configuration dynamic and efficient.
+
+## Terraform Resource
+
+The most important thing than you can configure with terraform are the ``resources``
+
+The ``resources`` are the component of your insfrastructure, this resource can be low-level componnents as networks and subnets. or can be too high-leve componnents like database, instance, DNS providers , etc.
+
+### Terraform resource interpolation 
+
+Terraform interpolation allow you to connect resource by reference like attributes, variables, or outputs, you can dynamically pass values, can create functions and dependencies between resources.
+
+Terraform automatically build dependency graph, ensuring that the ``resources`` are ``provicioned`` in correct order
+
+Example: 
+To create a instances resource you need to has created others resource before, and to be able to call in another part of you terraform script.
+
+- VCN
+    - Subnet
+        - Instances
+
+![alt text](image.png)
+
+
+## Terraform DataSource
