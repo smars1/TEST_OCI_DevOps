@@ -1,7 +1,7 @@
 # VCN
 resource "oci_core_virtual_network" "TestTerrafomrLabVNC" {
     cidr_block =   var.VCN-CIDR
-    dns_label = "TestTerraformLabVCN"
+    dns_label = "TestTerraLabVCN" # The dns label must be between 1 or 15 characteres
     compartment_id = oci_identity_compartment.Test-Terraform-Lab.id
     display_name = "TestTerrafomrLabVNC"
 }
@@ -19,7 +19,7 @@ resource "oci_core_dhcp_options" "TestTerrafomrLabDhcpOptions1" {
 
     options {
       type = "SearchDomain"
-      search_domain_names = ["Test_oci_terrraform_labs.com"]
+      search_domain_names = ["Test-oci-terrraform-labs.com"]
     }
 
 }
@@ -63,7 +63,7 @@ resource "oci_core_security_list" "TestTerraformLabSL" {
         for_each = var.service_ports
         content {
           protocol = "6"
-          source = "0.0.0.0./0"
+          source = "0.0.0.0/0" # Fixed 
           tcp_options {
             max = ingress_security_rules.value
             min = ingress_security_rules.value
@@ -83,10 +83,11 @@ resource "oci_core_security_list" "TestTerraformLabSL" {
 resource "oci_core_subnet" "TestTerraformWebSubnet"{
     cidr_block = var.Subnet-CIDR
     display_name = "TestTerraformWebSubnet"
-    dns_label = "TestTerraformLabN1"
+    dns_label = "TerraformN1" # The dns label must be between 1 or 15 characteres
     compartment_id = oci_identity_compartment.Test-Terraform-Lab.id
     vcn_id = oci_core_virtual_network.TestTerrafomrLabVNC.id
     route_table_id = oci_core_route_table.TestTerrafomRouteTable.id
     dhcp_options_id = oci_core_dhcp_options.TestTerrafomrLabDhcpOptions1.id
     security_list_ids = [oci_core_security_list.TestTerraformLabSL.id]
+    prohibit_public_ip_on_vnic = false  # Permitir IP publica (importante para acceso SSH)
 }
