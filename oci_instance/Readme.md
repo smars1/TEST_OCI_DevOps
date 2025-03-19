@@ -1,3 +1,10 @@
+# OCI: Performing a creation of instances
+This terraform project will be to able to create the below cloud architecture in OCI
+![alt text](image.png)
+
+
+
+
 One of the requirements before beginning to build an instance is to create a ssh key. This key allow us to maintain a connection with our instance once it have been created
 
 To performance the creation of the ssh key is necessary to open a terminal o git bash if you use windows, then type the following command
@@ -22,3 +29,5 @@ resource "oci_core_virtual_network" "TestTerrafomrLabVNC" {
   dns_label  = "a"  # dnsLabel size must be between 1 and 15 charaters
 }
 ```
+
+
