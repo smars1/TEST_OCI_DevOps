@@ -1,5 +1,6 @@
 # OCI: Performing a creation of instances
 This terraform project will be to able to create the below cloud architecture in OCI
+
 ![alt text](image.png)
 
 
