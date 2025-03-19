@@ -53,7 +53,7 @@ variable "Subnet-CIDR" {
 
 # Compute Variables
 variable "Shape" {
-  default = "VM.Standard.E4.Flex"
+  default = "VM.Standard.A1.Flex"
   description = "Shape for the compute instance."
   validation {
     condition     = contains(["VM.Standard.E3.Flex", "VM.Standard.E4.Flex", "VM.Standard.A1.Flex", "VM.Optimized3.Flex"], var.Shape)
