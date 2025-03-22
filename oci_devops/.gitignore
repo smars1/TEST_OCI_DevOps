@@ -1,0 +1,25 @@
+# Archivos de estado local (ya usamos backend remoto)
+terraform.tfstate
+terraform.tfstate.backup
+.tfstate*
+
+# Archivos de plan
+*.tfplan
+
+# Archivos de salida de Terraform
+.crash
+.terraform/
+.terraform.lock.hcl
+
+# Claves privadas y SSH
+*.pem
+*.key
+*.pub
+
+# Archivos sensibles
+*.env
+*.secrets
+
+# Archivos de sistema
+.DS_Store
+*.swp

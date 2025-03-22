@@ -1,0 +1,16 @@
+version: 0.1
+component: build
+
+steps:
+  - name: "Init Terraform"
+    command: terraform init -input=false
+
+  - name: "Plan Terraform"
+    command: terraform plan -input=false -out=tfplan
+
+  - name: "Apply Terraform"
+    command: terraform apply -auto-approve tfplan
+
+env:
+  variables:
+    TF_VAR_db_secret_id: "ocid1.vaultsecret.oc1..xxxxx"  # Reemplaza con tu OCID real o usa variables seguras
