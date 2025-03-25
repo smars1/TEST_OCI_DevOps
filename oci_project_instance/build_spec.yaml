@@ -1,0 +1,28 @@
+# version indica la version del formato del archivo de especificacion de OCI
+version: 0.1
+
+# component indica el tipo de pipeline. En este caso es 'build'
+component: build
+
+# steps define los pasos que OCI DevOps ejecutara en orden
+steps:
+  - name: "Paso 1 - Inicializar Terraform"
+    # Este comando inicializa terraform y prepara el backend remoto en OCI Object Storage
+    command: terraform init -input=false
+
+  - name: "Paso 2 - Planificar Infraestructura"
+    # Este comando crea un archivo 'tfplan' que contiene los cambios que Terraform aplicaria
+    # '-input=false' evita que terraform pida input interactivo (porque esto corre en un entorno sin usuario)
+    command: terraform plan -input=false -out=tfplan
+
+  - name: "Paso 3 - Aplicar Cambios (sin confirmacion)"
+    # Este paso aplica los cambios planeados en el archivo tfplan
+    # '-auto-approve' evita que terraform pregunte "Estas seguro?" (porque no hay UI)
+    command: terraform apply -auto-approve tfplan
+
+# env permite definir variables de entorno. Estas pueden ser sensibles o no
+# Aqui puedes pasar secretos como TF_VAR_ variables que Terraform reconoce como variables de entrada
+# env:
+#   variables:
+#     TF_VAR_db_secret_id: "ocid1.vaultsecret.oc1..xxxxx"
+#     # Puedes definir mas variables si las usas en tu codigo Terraform
